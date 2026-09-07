@@ -36,6 +36,24 @@ int main(void)
 	//SRAM is a component block of the STM32(volatile memory) , starting from address 0x20000000
 
 
+	int val = 0x50 ;
+	__asm volatile ("mov r0, %0"  : :  "r"(val)  )  ; //mov the value of C variable "val" into r0
+
+	__asm volatile ("mov r0, %0"  : :  "i"(0xabcd)  )  ; //mov the immediate value into r0
+
+
+	uint32_t control_register ;
+	__asm volatile("mrs %0, CONTROL" :    "=r"(control_register)    )  ;
+	//using mrs instruction to move the content of special register - "CONTROL" into the C variable "control register"
+
+
+	int v ;
+	int * p =  (int*) 0x20000000      ;
+	__asm volatile("ldr %0, [%1] "  :  "=r"(v)     : "r"(p)  )  ;
+//Basically we are doing :
+//	v = *p ;
+//Pointer dereferencing
+
 
     /* Loop forever */
 	for(;;);
