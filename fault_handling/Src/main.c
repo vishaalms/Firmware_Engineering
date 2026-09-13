@@ -72,7 +72,13 @@ __attribute__((naked)) void UsageFault_Handler(void){
 
 
 void UsageFault_Handler_c(uint32_t* pBASE ){
+
+	uint32_t * pUFSR =  (uint32_t*)0xE000ED2A     ;
+
+
 	printf("Usage Fault !!\n");
+	printf("UFSR :  %lx\n" ,  ( (*pUFSR) & (0xFFFF) )       );
+	printf("\nCore registers ==>\n");
 	printf("R0 : %lx\n"  ,   pBASE[0]         );
 	printf("R1 : %lx\n"  ,   pBASE[1]         );
 	printf("R2 : %lx\n"  ,   pBASE[2]         );
