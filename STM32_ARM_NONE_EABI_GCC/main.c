@@ -136,11 +136,10 @@ void task_delay(uint32_t tick_count){   //input is in ms
 }
 
 
-extern void initialise_monitor_handles(void) ;
 
 int main(void)
 {
-	initialise_monitor_handles();
+	
 
 	//setting the pendsv exception to the lowest possible priority
 	//setting the systick exception to the highest priority
@@ -205,7 +204,7 @@ int main(void)
 
 void task1_handler(void){
 	while(1){
-		printf("Task1 \n");
+		//printf("Task1 \n");
 		led_on(LED_GREEN);
 		task_delay(1000) ;
 		led_off(LED_GREEN);
@@ -215,7 +214,7 @@ void task1_handler(void){
 
 void task2_handler(void){
 	while(1){
-		printf("Task2 \n");
+		//printf("Task2 \n");
 		led_on(LED_ORANGE);
 		task_delay(500) ;
 		led_off(LED_ORANGE);
@@ -225,7 +224,7 @@ void task2_handler(void){
 
 void task3_handler(void){
 	while(1){
-		printf("Task3 \n");
+		//printf("Task3 \n");
 		led_on(LED_BLUE);
 		task_delay(250) ;
 		led_off(LED_BLUE);
@@ -235,7 +234,7 @@ void task3_handler(void){
 
 void task4_handler(void){
 	while(1){
-		printf("Task4 \n");
+		//printf("Task4 \n");
 		led_on(LED_RED);
 		task_delay(125) ;
 		led_off(LED_RED);

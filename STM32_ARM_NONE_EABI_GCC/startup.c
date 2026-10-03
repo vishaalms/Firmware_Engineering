@@ -1,6 +1,6 @@
 #include<stdint.h>
 
-extern uint32_t  _etext ;
+
 extern uint32_t  _sdata ;
 extern uint32_t  _edata ;
 
@@ -11,7 +11,7 @@ extern uint32_t _ebss ;
 
 int main(void) ;
 
-void __libc_init_array(void);
+
 
 void reset_handl(void);
 
@@ -45,22 +45,22 @@ uint32_t vectorss[] __attribute__((section(".isr_vector")))   ={
 
 void reset_handl(){
 
-    uint32_t size =     (uint32_t) (  (&_edata)  -   (&_sdata)   ) ;
+    uint32_t size =     (uint32_t) (  ( (uint32_t)(&_edata) )  -   ( (uint32_t)(&_sdata) )   ) ;
 
-    uint32_t * pDst = (uint32_t*) (&_sdata)  ;
-    uint32_t * pSrc = (uint32_t*) (&_la_data)  ;
+    uint8_t * pDst = (uint8_t*) (&_sdata)  ;
+    uint8_t * pSrc = (uint8_t*) (&_la_data)  ;
 
     for(uint32_t i = 0 ;   i < size ; i++  ){
         *pDst++ = *pSrc++  ;
     }
 
-    size =    (uint32_t)  ( (&_ebss)  -   (&_sbss)  )  ;
-    pDst = (uint32_t*) (&_sbss)  ;
+    size =  (uint32_t) (  ( (uint32_t)(&_ebss) )  -   ( (uint32_t)(&_sbss) )   ) ;
+    pDst = (uint8_t*) (&_sbss)  ;
     for(uint32_t i = 0 ;   i < size ; i++  ){
         *pDst++ = 0  ;
     }
 
-    __libc_init_array();
+    
 
 
     main();

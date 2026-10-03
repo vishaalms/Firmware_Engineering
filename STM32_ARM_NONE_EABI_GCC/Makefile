@@ -1,13 +1,13 @@
 CC=arm-none-eabi-gcc
 MACH=cortex-m4
-CFLAGS= -c -mcpu=$(MACH) -mthumb -mfloat-abi=soft -std=gnu11 -Wall -O0
-LDFLAGS= -mcpu=$(MACH) -mthumb -mfloat-abi=soft --specs=rdimon.specs  -T linkerscript.ld -Wl,-Map=finall.map
+CFLAGS= -c -mcpu=$(MACH) -mthumb -mfloat-abi=soft -std=gnu11 -Wall -O0 -save-temps
+LDFLAGS= -mcpu=$(MACH) -mthumb -mfloat-abi=soft -nostdlib -T linkerscript.ld -Wl,-Map=finall.map
 
 
 all:main.o led.o startup.o finaly.elf
 
 clean:
-	rm -rf *.o *.elf
+	rm -rf *.o *.elf *.i *.s
 
 main.o:main.c
 	$(CC) $(CFLAGS) -o $@ $^

@@ -31,3 +31,4 @@ i r     -     view all register contents
 x/16wx 0x20000000    -     view the raw address location
 
 monitor arm semihosting enable        -     enables semihosting    (should use this while semihosting code is implemented in the program)
+(In this case std libraries are not used so not needed)

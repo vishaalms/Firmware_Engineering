@@ -12,13 +12,8 @@ SECTIONS
     {
         *(.isr_vector)
         *(.text)
-        *(.text.*)
-        *(.init)
-        *(.fini)
         *(.rodata)
-        *(.rodata.*)
         . = ALIGN(4);
-        _etext = . ;
     }> FLASH
 
 
@@ -27,7 +22,6 @@ SECTIONS
     {
         _sdata = . ;
         *(.data)
-        *(.data.*)
         . = ALIGN(4);
         _edata = . ;
     }> SRAM AT> FLASH
@@ -35,13 +29,8 @@ SECTIONS
     .bss :
     {
         _sbss = . ;
-        __bss_start__ = . ;
         *(.bss)
-        *(.bss.*)
         . = ALIGN(4);
         _ebss = . ;
-        __bss_end__ = . ;
-        __end__ =  .  ;
-        end = .  ;
     }> SRAM
 }
