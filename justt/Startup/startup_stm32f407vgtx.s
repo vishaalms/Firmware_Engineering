@@ -80,13 +80,11 @@ LoopFillZerobss:
 /* Call static constructors */
   @bl __libc_init_array
 /* Call the application's entry point.*/
-	bl main
 
-lab:
-	b lab
+  bl main
 
-
-
+LoopForever:
+  b LoopForever
 
   .size Reset_Handler, .-Reset_Handler
 
@@ -494,10 +492,6 @@ g_pfnVectors:
 
 	.weak	FPU_IRQHandler
 	.thumb_set FPU_IRQHandler,Default_Handler
-
-	.weak	SystemInit
-
-
 
 
 /************************ (C) COPYRIGHT STMicroelectronics *****END OF FILE****/
